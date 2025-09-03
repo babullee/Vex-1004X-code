@@ -214,6 +214,45 @@ void autonomous(void) {
 void usercontrol(void) {
   // User control code here, inside the loop
   while (1) {
+
+    if(controller1.ButtonR1.pressing()){    // level 3
+      intake1.spin(fwd,-100,pct);
+      intake2.spin(fwd,-100,pct);
+      intake3.spin(fwd,-100,pct);
+    }
+    else if(controller1.ButtonL1.pressing()){ // 吸进来
+      intake1.spin(fwd,-100,pct);
+      intake2.spin(fwd,100,pct);
+    }
+    else if(controller1.ButtonL2.pressing()){   //level 1
+      intake1.spin(fwd,100,pct);
+      intake2.spin(fwd,-100,pct);
+    }
+    else if (controller1.ButtonR2.pressing()){ // level 2
+      intake1.spin(fwd,-100,pct);
+      intake2.spin(fwd,-100,pct);
+      intake3.spin(fwd,100,pct);
+    }
+    else{
+      intake1.stop(brake);
+      intake2.stop(brake);
+      intake3.stop(brake);
+    }
+    
+    if(controller1.ButtonX.pressing()){
+      head_piston.set(false);
+    }
+    else if(controller1.ButtonB.pressing()){
+      head_piston.set(true);
+  
+    }
+    if(controller1.ButtonUp.pressing()){
+      intake_piston.set(true);
+    }
+    else if(controller1.ButtonDown.pressing()){
+      intake_piston.set(false);
+  
+    }
     // This is the main execution loop for the user control program.
     // Each time through the loop your program should update motor + servo
     // values based on feedback from the joysticks.
