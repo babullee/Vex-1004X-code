@@ -215,6 +215,14 @@ void usercontrol(void) {
   // User control code here, inside the loop
   while (1) {
 
+    Leftfrontmotor.spin(fwd,(controller(primary).Axis3.position()*1-controller(primary).Axis1.position()*1)*0.12,volt);
+    Leftmiddlemotor.spin(fwd,(controller(primary).Axis3.position()*1-controller(primary).Axis1.position()*1)*0.12,volt);
+    Leftbackmotor.spin(fwd,   (controller(primary).Axis3.position()*1-controller(primary).Axis1.position()*1)*0.12,volt);
+    Rightfrontmotor.spin(fwd, (controller(primary).Axis3.position()*1+controller(primary).Axis1.position()*1)*0.12,volt);
+    Rightmiddlemotor.spin(fwd,(controller(primary).Axis3.position()*1+controller(primary).Axis1.position()*1)*0.12,volt);
+    Rightbackmotor.spin(fwd,  (controller(primary).Axis3.position()*1+controller(primary).Axis1.position()*1)*0.12,volt);
+
+
     if(controller(primary).ButtonR1.pressing()){    // level 3
       intake1.spin(fwd,100,pct);
       intake2.spin(fwd,-100,pct);
@@ -250,13 +258,7 @@ void usercontrol(void) {
       intake_piston.set(false);
   
     }
-    Leftfrontmotor.spin(fwd,(controller(primary).Axis3.position()*1-controller(primary).Axis1.position()*1)*0.12,volt);
-    Leftmiddlemotor.spin(fwd,(controller(primary).Axis3.position()*1-controller(primary).Axis1.position()*1)*0.12,volt);
-    Leftbackmotor.spin(fwd,   (controller(primary).Axis3.position()*1-controller(primary).Axis1.position()*1)*0.12,volt);
-    Rightfrontmotor.spin(fwd, (controller(primary).Axis3.position()*1+controller(primary).Axis1.position()*1)*0.12,volt);
-    Rightmiddlemotor.spin(fwd,(controller(primary).Axis3.position()*1+controller(primary).Axis1.position()*1)*0.12,volt);
-    Rightbackmotor.spin(fwd,  (controller(primary).Axis3.position()*1+controller(primary).Axis1.position()*1)*0.12,volt);
-
+    
     if(abs(controller(primary).Axis1.position())>2){
       Leftfrontmotor.setStopping(brake);
       Leftmiddlemotor.setStopping(brake);
