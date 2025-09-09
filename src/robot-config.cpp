@@ -12,16 +12,15 @@ brain  Brain;
 
 //Add your devices below, and don't forget to do the same in robot-config.h:
 
-motor Leftfrontmotor = motor(PORT11, ratio6_1, true);
-motor Leftmiddlemotor = motor(PORT2, ratio6_1, true);
-motor Leftbackmotor = motor(PORT12, ratio6_1, true);
-motor Rightfrontmotor = motor(PORT19, ratio6_1, false); //bad connection
-motor Rightmiddlemotor = motor(PORT9, ratio6_1, false);
-motor Rightbackmotor = motor(PORT18, ratio6_1, false);
+motor Leftfrontmotor = motor(PORT18, ratio6_1, false);
+motor Leftmiddlemotor = motor(PORT19, ratio6_1, false);
+motor Leftbackmotor = motor(PORT20, ratio6_1, true);
+motor Rightfrontmotor = motor(PORT13, ratio6_1, true);
+motor Rightmiddlemotor = motor(PORT12, ratio6_1, true);
+motor Rightbackmotor = motor(PORT11, ratio6_1, false);
 
-motor intake1 = motor(PORT13,ratio6_1,false);
-motor intake2 = motor(PORT20,ratio6_1,false); //big motor
-motor intake3 = motor(PORT17,ratio6_1,true);
+motor intake1 = motor(PORT17,ratio6_1,false);
+motor intake2 = motor(PORT14,ratio6_1,false); 
 pneumatics head_piston = pneumatics(Brain.ThreeWirePort.G);
 pneumatics intake_piston = pneumatics(Brain.ThreeWirePort.H);
 

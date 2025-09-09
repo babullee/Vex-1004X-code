@@ -215,63 +215,67 @@ void usercontrol(void) {
   // User control code here, inside the loop
   while (1) {
 
-    if(controller1.ButtonR1.pressing()){    // level 3
-      intake1.spin(fwd,-100,pct);
-      intake2.spin(fwd,-100,pct);
-      intake3.spin(fwd,-100,pct);
-    }
-    else if(controller1.ButtonL1.pressing()){ // 吸进来
-      intake1.spin(fwd,-100,pct);
-      intake2.spin(fwd,100,pct);
-    }
-    else if(controller1.ButtonL2.pressing()){   //level 1
+    if(controller(primary).ButtonR1.pressing()){    // level 3
       intake1.spin(fwd,100,pct);
       intake2.spin(fwd,-100,pct);
     }
-    else if (controller1.ButtonR2.pressing()){ // level 2
+    else if(controller(primary).ButtonL1.pressing()){ // 吸进来
+      intake1.spin(fwd,-100,pct);
+      intake2.spin(fwd,100,pct);
+    }
+    else if(controller(primary).ButtonL2.pressing()){   //level 1
+      intake1.spin(fwd,100,pct);
+      intake2.spin(fwd,100,pct);
+    }
+    else if (controller(primary).ButtonR2.pressing()){ // level 2
       intake1.spin(fwd,-100,pct);
       intake2.spin(fwd,-100,pct);
-      intake3.spin(fwd,100,pct);
     }
     else{
       intake1.stop(brake);
       intake2.stop(brake);
-      intake3.stop(brake);
     }
     
-    if(controller1.ButtonX.pressing()){
+    if(controller(primary).ButtonX.pressing()){
       head_piston.set(false);
     }
-    else if(controller1.ButtonB.pressing()){
+    else if(controller(primary).ButtonB.pressing()){
       head_piston.set(true);
   
     }
-    if(controller1.ButtonUp.pressing()){
+    if(controller(primary).ButtonUp.pressing()){
       intake_piston.set(true);
     }
-    else if(controller1.ButtonDown.pressing()){
+    else if(controller(primary).ButtonDown.pressing()){
       intake_piston.set(false);
   
     }
-    // This is the main execution loop for the user control program.
-    // Each time through the loop your program should update motor + servo
-    // values based on feedback from the joysticks.
+    Leftfrontmotor.spin(fwd,(controller(primary).Axis3.position()*1-controller(primary).Axis1.position()*1)*0.12,volt);
+    Leftmiddlemotor.spin(fwd,(controller(primary).Axis3.position()*1-controller(primary).Axis1.position()*1)*0.12,volt);
+    Leftbackmotor.spin(fwd,   (controller(primary).Axis3.position()*1-controller(primary).Axis1.position()*1)*0.12,volt);
+    Rightfrontmotor.spin(fwd, (controller(primary).Axis3.position()*1+controller(primary).Axis1.position()*1)*0.12,volt);
+    Rightmiddlemotor.spin(fwd,(controller(primary).Axis3.position()*1+controller(primary).Axis1.position()*1)*0.12,volt);
+    Rightbackmotor.spin(fwd,  (controller(primary).Axis3.position()*1+controller(primary).Axis1.position()*1)*0.12,volt);
 
-    // ........................................................................
-    // Insert user code here. This is where you use the joystick values to
-    // update your motors, etc.
-    // ........................................................................
+    if(abs(controller(primary).Axis1.position())>2){
+      Leftfrontmotor.setStopping(brake);
+      Leftmiddlemotor.setStopping(brake);
+      Leftbackmotor.setStopping(brake);
+      Rightfrontmotor.setStopping(brake);
+      Rightmiddlemotor.setStopping(brake);
+      Rightbackmotor.setStopping(brake);
+    }
+    else if(abs(controller(primary).Axis3.position())>2){
+      Leftfrontmotor.setStopping(coast);
+      Leftmiddlemotor.setStopping(coast);
+      Leftbackmotor.setStopping(coast);
+      Rightfrontmotor.setStopping(coast);
+      Rightmiddlemotor.setStopping(coast);
+      Rightbackmotor.setStopping(coast);
+    }
+    
 
-    //Replace this line with chassis.control_tank(); for tank drive 
-    //or chassis.control_holonomic(); for holo drive.
-    chassis.control_arcade();
-
-    wait(20, msec); // Sleep the task for a short amount of time to
-                    // prevent wasted resources.
-  }
-}
-
-//
+  }}
 // Main will set up the competition functions and callbacks.
 //
 int main() {
