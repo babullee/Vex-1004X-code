@@ -50,7 +50,7 @@ motor_group(Leftfrontmotor,Leftmiddlemotor,Leftbackmotor),
 motor_group(Rightfrontmotor,Rightmiddlemotor,Rightbackmotor),
 
 //Specify the PORT NUMBER of your inertial sensor, in PORT format (i.e. "PORT1", not simply "1"):
-PORT15,
+PORT21,
 
 //Input your wheel diameter. (4" omnis are actually closer to 4.125"):
 3.25,
@@ -62,7 +62,7 @@ PORT15,
 
 //Gyro scale, this is what your gyro reads when you spin the robot 360 degrees.
 //For most cases 360 will do fine here, but this scale factor can be very helpful when precision is necessary.
-360,
+362,
 
 /*---------------------------------------------------------------------------*/
 /*                                  PAUSE!                                   */
@@ -172,33 +172,38 @@ void pre_auton() {
  */
 
 void autonomous(void) {
-  auto_started = true;
-  switch(current_auton_selection){ 
-    case 0:
-      drive_test();
-      break;
-    case 1:         
-      drive_test();
-      break;
-    case 2:
-      turn_test();
-      break;
-    case 3:
-      swing_test();
-      break;
-    case 4:
-      full_test();
-      break;
-    case 5:
-      odom_test();
-      break;
-    case 6:
-      tank_odom_test();
-      break;
-    case 7:
-      holonomic_odom_test();
-      break;
- }
+  wait(2000,msec);
+  drive_test();
+  chassis.drive_stop(brake);
+
+
+  // auto_started = true;
+  // switch(current_auton_selection){ 
+  //   case 0:
+  //     drive_test();
+  //     break;
+  //   case 1:         
+  //     drive_test();
+  //     break;
+  //   case 2:
+  //     turn_test();
+  //     break;
+  //   case 3:
+  //     swing_test();
+  //     break;
+  //   case 4:
+  //     full_test();
+  //     break;
+  //   case 5:
+  //     odom_test();
+  //     break;
+  //   case 6:
+  //     tank_odom_test();
+  //     break;
+  //   case 7:
+  //     holonomic_odom_test();
+  //     break;
+  // }
 }
 
 /*---------------------------------------------------------------------------*/
