@@ -62,7 +62,7 @@ PORT21,
 
 //Gyro scale, this is what your gyro reads when you spin the robot 360 degrees.
 //For most cases 360 will do fine here, but this scale factor can be very helpful when precision is necessary.
-362,
+363,
 
 /*---------------------------------------------------------------------------*/
 /*                                  PAUSE!                                   */
@@ -172,8 +172,8 @@ void pre_auton() {
  */
 
 void autonomous(void) {
-  wait(2000,msec);
-  drive_test();
+  wait(1000,msec);
+  auto2();
   chassis.drive_stop(brake);
 
 
@@ -220,13 +220,13 @@ void usercontrol(void) {
   // User control code here, inside the loop
   while (1) {
 
-    Leftfrontmotor.spin(fwd,(controller(primary).Axis3.position()*1-controller(primary).Axis1.position()*1)*0.12,volt);
-    Leftmiddlemotor.spin(fwd,(controller(primary).Axis3.position()*1-controller(primary).Axis1.position()*1)*0.12,volt);
-    Leftbackmotor.spin(fwd,   (controller(primary).Axis3.position()*1-controller(primary).Axis1.position()*1)*0.12,volt);
-    Rightfrontmotor.spin(fwd, (controller(primary).Axis3.position()*1+controller(primary).Axis1.position()*1)*0.12,volt);
-    Rightmiddlemotor.spin(fwd,(controller(primary).Axis3.position()*1+controller(primary).Axis1.position()*1)*0.12,volt);
-    Rightbackmotor.spin(fwd,  (controller(primary).Axis3.position()*1+controller(primary).Axis1.position()*1)*0.12,volt);
-
+    // Leftfrontmotor.spin(fwd,(controller(primary).Axis3.position()*1-controller(primary).Axis1.position()*1)*0.12,volt);
+    // Leftmiddlemotor.spin(fwd,(controller(primary).Axis3.position()*1-controller(primary).Axis1.position()*1)*0.12,volt);
+    // Leftbackmotor.spin(fwd,   (controller(primary).Axis3.position()*1-controller(primary).Axis1.position()*1)*0.12,volt);
+    // Rightfrontmotor.spin(fwd, (controller(primary).Axis3.position()*1+controller(primary).Axis1.position()*1)*0.12,volt);
+    // Rightmiddlemotor.spin(fwd,(controller(primary).Axis3.position()*1+controller(primary).Axis1.position()*1)*0.12,volt);
+    // Rightbackmotor.spin(fwd,  (controller(primary).Axis3.position()*1+controller(primary).Axis1.position()*1)*0.12,volt);
+    chassis.control_arcade();
 
     if(controller(primary).ButtonR1.pressing()){    // level 3
       intake1.spin(fwd,100,pct);

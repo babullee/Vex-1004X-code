@@ -11,15 +11,20 @@
 void default_constants(){
   // Each constant set is in the form of (maxVoltage, kP, kI, kD, startI).
   chassis.set_drive_constants(6, 0.8, 0, 0, 0); //直走
-  chassis.set_heading_constants(6, .05, 0, 0, 0);
+  chassis.set_heading_constants(6, .03, 0, 0, 0);
 
-  chassis.set_turn_constants(12, .4, .0, 0, 0); //转弯
+  // chassis.set_turn_constants(10, .06, .0, 0, 0);
+   chassis.set_turn_constants(10, .063, .0, 0, 0); //转弯
   chassis.set_swing_constants(12, .3, 0, 0, 0);
 
   // Each exit condition set is in the form of (settle_error, settle_time, timeout).
-  chassis.set_drive_exit_conditions(1.5, 250, 5000);
-  chassis.set_turn_exit_conditions(1, 200, 3000);
-  chassis.set_swing_exit_conditions(1, 200, 3000);
+  chassis.set_drive_exit_conditions(1.5, 250, 4000);
+  chassis.set_turn_exit_conditions(1, 200, 1500);
+  chassis.set_swing_exit_conditions(1, 200, 1500);
+  
+
+
+ 
 }
 
 /**
@@ -44,7 +49,7 @@ void odom_constants(){
 void drive_test(){
   chassis.drive_distance(18);
   chassis.drive_distance(18);
-  chassis.drive_distance(-36);
+  chassis.drive_distance(-36);                                               
   // chassis.drive_distance(12);
   // chassis.drive_distance(18);
   // chassis.drive_distance(-36);
@@ -55,11 +60,13 @@ void drive_test(){
  */
 
 void turn_test(){
-  chassis.turn_to_angle(5);
-  chassis.turn_to_angle(30);
+  chassis.turn_to_angle(180);
   chassis.turn_to_angle(90);
-  chassis.turn_to_angle(225);
-  chassis.turn_to_angle(0);
+  chassis.turn_to_angle(360);
+  // chassis.turn_to_angle(30);
+  // chassis.turn_to_angle(90);
+  // chassis.turn_to_angle(225);
+  // chassis.turn_to_angle(0);
 }
 
 /**
@@ -129,4 +136,46 @@ void holonomic_odom_test(){
   chassis.holonomic_drive_to_pose(18, 0, 180);
   chassis.holonomic_drive_to_pose(0, 18, 270);
   chassis.holonomic_drive_to_pose(0, 0, 0);
+}
+void auto1(){
+// Drive in a curve: left side slower than right side
+chassis.drive_distance(-40,90);
+      intake1.spin(fwd,-100,pct);
+      intake2.spin(fwd,100,pct);
+      wait(2000,msec);
+      intake1.stop(brake);
+      intake2.stop(brake);
+      
+// Let it run for a certain time
+
+
+// Stop motors
+
+
+}
+
+void auto2(){
+  intake1.spin(fwd,-100,pct);
+  intake2.spin(fwd,-100,pct);
+  chassis.drive_max_voltage=4;
+  chassis.drive_distance(20);
+  chassis.drive_distance(8);
+  default_constants();
+   wait(1000,msec);
+      intake1.stop(brake);
+      intake2.stop(brake);
+  chassis.turn_to_angle(90);
+  chassis.drive_distance(-10);
+ 
+  chassis.right_swing_to_angle(200);
+
+  intake1.spin(fwd,-100,pct);
+  intake2.spin(fwd,100,pct);
+  wait(2500,msec);
+  intake1.stop(brake);
+  intake2.stop(brake);
+
+      
+
+
 }

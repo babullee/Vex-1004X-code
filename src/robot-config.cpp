@@ -12,12 +12,12 @@ brain  Brain;
 
 //Add your devices below, and don't forget to do the same in robot-config.h:
 
-motor Leftfrontmotor = motor(PORT18, ratio6_1, false);
-motor Leftmiddlemotor = motor(PORT19, ratio6_1, false);
-motor Leftbackmotor = motor(PORT20, ratio6_1, true);
-motor Rightfrontmotor = motor(PORT13, ratio6_1, true);
-motor Rightmiddlemotor = motor(PORT12, ratio6_1, true);
-motor Rightbackmotor = motor(PORT11, ratio6_1, false);
+motor Rightfrontmotor = motor(PORT18, ratio6_1, false);
+motor Rightmiddlemotor = motor(PORT19, ratio6_1, false);
+motor Rightbackmotor = motor(PORT20, ratio6_1, true);//up
+motor Leftfrontmotor = motor(PORT13, ratio6_1, true);
+motor Leftmiddlemotor = motor(PORT12, ratio6_1, true);
+motor Leftbackmotor = motor(PORT11, ratio6_1, false);
 
 motor intake1 = motor(PORT17,ratio6_1,false);
 motor intake2 = motor(PORT14,ratio6_1,false); 
