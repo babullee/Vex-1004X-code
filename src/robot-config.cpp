@@ -21,9 +21,7 @@ motor Leftbackmotor = motor(PORT11, ratio6_1, false);
 
 motor intake1 = motor(PORT17,ratio6_1,false);
 motor intake2 = motor(PORT14,ratio6_1,false); 
-pneumatics head_piston = pneumatics(Brain.ThreeWirePort.G);
-pneumatics intake_piston = pneumatics(Brain.ThreeWirePort.H);
-
-void vexcodeInit( void ) {
-  // nothing to initialize
-}
+pneumatics head_piston = pneumatics(Brain.ThreeWirePort.B);
+pneumatics intake_piston = pneumatics(Brain.ThreeWirePort.C);
+pneumatics uppeer_piston = pneumatics(Brain.ThreeWirePort.A);
+void vexcodeInit( void ) {}

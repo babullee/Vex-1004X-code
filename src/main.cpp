@@ -173,7 +173,7 @@ void pre_auton() {
 
 void autonomous(void) {
   wait(1000,msec);
-  auto2();
+  auto1();
   chassis.drive_stop(brake);
 
 
@@ -263,6 +263,7 @@ void usercontrol(void) {
       intake_piston.set(false);
   
     }
+    
     
     if(abs(controller(primary).Axis1.position())>2){
       Leftfrontmotor.setStopping(brake);
